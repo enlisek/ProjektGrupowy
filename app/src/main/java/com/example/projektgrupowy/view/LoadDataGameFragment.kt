@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
+import com.example.projektgrupowy.viewmodel.LoadDataGameViewModel
+import com.example.projektgrupowy.viewmodel.LocalPlayerViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.fragment_load_data_game.*
 
@@ -24,6 +27,7 @@ class LoadDataGameFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var  loadDataGameViewModel:LoadDataGameViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,8 @@ class LoadDataGameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        loadDataGameViewModel = ViewModelProvider(requireActivity()).get(LoadDataGameViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_load_data_game, container, false)
     }
@@ -47,7 +53,9 @@ class LoadDataGameFragment : Fragment() {
 //        buttonBackFromGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_welcomeFragment) }
 //        buttonLoadDataToGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_loadDataGameFragment) }
 //
-
+        buttonConfirmDataGame.setOnClickListener{view -> run{
+            loadDataGameViewModel.addPlayer(6756,"2ja",3,2,5,2,5,2,5)
+        }}
         buttonBackToGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadDataGameFragment_to_gameFragment) }
         buttonMakePhotoGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadDataGameFragment_to_loadPhotoGameFragment) }
     }
