@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_welcomeFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_localPlayerFragment"
+            app:destination="@id/localPlayerFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -34,5 +37,14 @@
         <action
             android:id="@+id/action_addAnimalsFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/localPlayerFragment"
+        android:name="com.example.projektgrupowy.view.LocalPlayerFragment"
+        android:label="fragment_local_player"
+        tools:layout="@layout/fragment_local_player" >
+        <action
+            android:id="@+id/action_localPlayerFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
 </navigation>
