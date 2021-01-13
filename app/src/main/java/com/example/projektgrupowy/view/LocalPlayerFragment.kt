@@ -67,7 +67,7 @@ class LocalPlayerFragment : Fragment() {
         }
 
         buttonBackLocalPlayer.setOnClickListener { view->view.findNavController().navigate(R.id.action_localPlayerFragment_to_welcomeFragment) }
-        buttonGetData.setOnClickListener { view->view.findNavController().navigate(R.id.action_localPlayerFragment_to_enterDataFragment) }
+        buttonGetData.setOnClickListener { view->view.findNavController().navigate(R.id.action_localPlayerFragment_to_manuallyEnterLocalDataFragment) }
 
     }
     companion object {

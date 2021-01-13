@@ -23,20 +23,11 @@
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <action
-            android:id="@+id/action_gameFragment_to_addAnimalsFragment"
-            app:destination="@id/addAnimalsFragment" />
-        <action
             android:id="@+id/action_gameFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addAnimalsFragment"
-        android:name="com.example.projektgrupowy.view.AddAnimalsFragment"
-        android:label="fragment_add_animals"
-        tools:layout="@layout/fragment_add_animals" >
         <action
-            android:id="@+id/action_addAnimalsFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
+            android:id="@+id/action_gameFragment_to_loadDataGameFragment"
+            app:destination="@id/loadDataGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/localPlayerFragment"
@@ -47,8 +38,8 @@
             android:id="@+id/action_localPlayerFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
         <action
-            android:id="@+id/action_localPlayerFragment_to_enterDataFragment"
-            app:destination="@id/enterDataFragment" />
+            android:id="@+id/action_localPlayerFragment_to_manuallyEnterLocalDataFragment"
+            app:destination="@id/manuallyEnterLocalDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/enterDataFragment"
@@ -56,7 +47,40 @@
         android:label="fragment_enter_data"
         tools:layout="@layout/fragment_enter_data" >
         <action
-            android:id="@+id/action_enterDataFragment_to_localPlayerFragment"
+            android:id="@+id/action_enterDataFragment_to_manuallyEnterLocalDataFragment"
+            app:destination="@id/manuallyEnterLocalDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manuallyEnterLocalDataFragment"
+        android:name="com.example.projektgrupowy.view.ManuallyEnterLocalDataFragment"
+        android:label="fragment_manually_enter_local_data"
+        tools:layout="@layout/fragment_manually_enter_local_data" >
+        <action
+            android:id="@+id/action_manuallyEnterLocalDataFragment_to_localPlayerFragment"
             app:destination="@id/localPlayerFragment" />
+        <action
+            android:id="@+id/action_manuallyEnterLocalDataFragment_to_enterDataFragment"
+            app:destination="@id/enterDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadDataGameFragment"
+        android:name="com.example.projektgrupowy.view.LoadDataGameFragment"
+        android:label="fragment_load_data_game"
+        tools:layout="@layout/fragment_load_data_game" >
+        <action
+            android:id="@+id/action_loadDataGameFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_loadDataGameFragment_to_loadPhotoGameFragment"
+            app:destination="@id/loadPhotoGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadPhotoGameFragment"
+        android:name="com.example.projektgrupowy.view.LoadPhotoGameFragment"
+        android:label="fragment_load_photo_game"
+        tools:layout="@layout/fragment_load_photo_game" >
+        <action
+            android:id="@+id/action_loadPhotoGameFragment_to_loadDataGameFragment"
+            app:destination="@id/loadDataGameFragment" />
     </fragment>
 </navigation>

@@ -16,6 +16,8 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
 import kotlinx.android.synthetic.main.fragment_enter_data.*
+import kotlinx.android.synthetic.main.fragment_game.*
+import kotlinx.android.synthetic.main.fragment_load_photo_game.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,8 +25,12 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private const val REQUEST_CODE = 42
 
-
-class EnterDataFragment : Fragment() {
+/**
+ * A simple [Fragment] subclass.
+ * Use the [LoadPhotoGameFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class LoadPhotoGameFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -41,15 +47,14 @@ class EnterDataFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_enter_data, container, false)
+        return inflater.inflate(R.layout.fragment_load_photo_game, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        buttonCameraLocal.setOnClickListener()
+        buttonCameraGame.setOnClickListener()
         {
             Log.d("XX", "probuje otworzyc")
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -61,7 +66,8 @@ class EnterDataFragment : Fragment() {
             }
 
         }
-        buttonBackToEnterManually.setOnClickListener{ view->view.findNavController().navigate(R.id.action_enterDataFragment_to_manuallyEnterLocalDataFragment)}
+        buttonBackToEnterDataGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment) }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -71,7 +77,7 @@ class EnterDataFragment : Fragment() {
             val takenImage = data?.extras?.get("data") as Bitmap
 //            var cyaned = ImageManagement.ImageToCyan(takenImage)
 //            var cutted = ImageManagement.FindOneSector(cyaned)
-            imageViewLocal.setImageBitmap(takenImage)
+            imageViewGame.setImageBitmap(takenImage)
 
         }
         else
@@ -80,7 +86,6 @@ class EnterDataFragment : Fragment() {
         }
 
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -88,12 +93,12 @@ class EnterDataFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ChooseFragment.
+         * @return A new instance of fragment LoadPhotoGameFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            EnterDataFragment().apply {
+            LoadPhotoGameFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

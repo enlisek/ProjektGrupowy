@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout4"
+    android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.EnterDataFragment">
+    tools:context=".view.LoadPhotoGameFragment">
 
     <ImageView
-        android:id="@+id/imageViewLocal"
+        android:id="@+id/imageViewGame"
         android:layout_width="391dp"
         android:layout_height="625dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,19 +17,19 @@
         tools:srcCompat="@drawable/ic_launcher_foreground" />
 
     <Button
-        android:id="@+id/buttonConfirmPhotoLocal"
+        android:id="@+id/buttonConfirmPhotoGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_background_color"
         android:text="Zatwierdź zdjęcie"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonBackToEnterManually"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBackToEnterDataGame"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonCameraLocal"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal" />
+        app:layout_constraintStart_toEndOf="@+id/buttonCameraGame"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGame" />
 
     <Button
-        android:id="@+id/buttonBackToEnterManually"
+        android:id="@+id/buttonBackToEnterDataGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_background_color"
@@ -37,19 +37,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonConfirmPhotoLocal"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal" />
+        app:layout_constraintStart_toEndOf="@+id/buttonConfirmPhotoGame"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGame" />
 
     <Button
-        android:id="@+id/buttonCameraLocal"
+        android:id="@+id/buttonCameraGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_background_color"
         android:text="Zrób zdjęcie"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonConfirmPhotoLocal"
+        app:layout_constraintEnd_toStartOf="@+id/buttonConfirmPhotoGame"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
