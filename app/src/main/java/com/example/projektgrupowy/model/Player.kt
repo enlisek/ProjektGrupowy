@@ -3,7 +3,7 @@ package com.example.projektgrupowy.model
 import com.google.gson.annotations.SerializedName
 
 data class Player(
-    val id: Long,
+    var id: Long,
     val playerName: String,
     val numberOfRabbit: Int,
     val numberOfPig: Int,

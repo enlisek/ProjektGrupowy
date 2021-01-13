@@ -12,6 +12,6 @@ interface ApiRequest {
     @GET("Players")
     fun getAllPlayers(): Call<List<Player>>
 
-    @POST("4")
+    @POST("Players")
     fun addPlayer(@Body player: Player):Call<Player>
 }
