@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LocalPlayerFragment" >
+    tools:context=".view.LocalPlayerFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewLocalPlayer"
@@ -21,11 +21,21 @@
         android:id="@+id/buttonBackLocalPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="123dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonGetData"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewLocalPlayer" />
+
+    <Button
+        android:id="@+id/buttonGetData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewLocalPlayer"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonBackLocalPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewLocalPlayer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

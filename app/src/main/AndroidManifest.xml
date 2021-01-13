@@ -4,7 +4,7 @@
     package="com.example.projektgrupowy">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <application
@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjektGrupowy">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainActivity" android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -46,5 +46,17 @@
         <action
             android:id="@+id/action_localPlayerFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_localPlayerFragment_to_enterDataFragment"
+            app:destination="@id/enterDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterDataFragment"
+        android:name="com.example.projektgrupowy.view.EnterDataFragment"
+        android:label="fragment_enter_data"
+        tools:layout="@layout/fragment_enter_data" >
+        <action
+            android:id="@+id/action_enterDataFragment_to_localPlayerFragment"
+            app:destination="@id/localPlayerFragment" />
     </fragment>
 </navigation>
