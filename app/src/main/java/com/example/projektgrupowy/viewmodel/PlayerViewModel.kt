@@ -42,6 +42,7 @@ class PlayerViewModel(application: Application): AndroidViewModel(application) {
             var call1 = playerRemoteRepository.addPlayer(playerToAdd)
             var response1 = call1.execute()
             Log.v("Response", response1.body().toString())
+
             setCurrentPlayer(response1.body()!!)
         }
     }
@@ -52,7 +53,7 @@ class PlayerViewModel(application: Application): AndroidViewModel(application) {
 
     fun setCurrentPlayer(player: Player)
     {
-        _currentPlayer.value=player
+        _currentPlayer.postValue(player)
     }
 
    // val players: LiveData<List<Player>>
