@@ -195,25 +195,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="212dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/button_background_color"
         android:text="Zatwierdź dane"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonBackToGame"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonMakePhotoGame"
-        android:backgroundTint="@color/button_background_color"/>
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonBackToGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="212dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/button_background_color"
         android:text="Powrót"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonConfirmDataGame"
         app:layout_constraintTop_toBottomOf="@+id/buttonMakePhotoGame"
-        android:backgroundTint="@color/button_background_color"/>
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

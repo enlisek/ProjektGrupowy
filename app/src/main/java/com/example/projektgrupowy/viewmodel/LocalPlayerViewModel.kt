@@ -17,16 +17,22 @@ class LocalPlayerViewModel(application: Application): AndroidViewModel(applicati
     private val playerLocalRepository:PlayerLocalRepository =
         PlayerLocalRepository(LocalDatabase.getDatabase(application).playerDao())
 
-    lateinit var _players: LiveData<List<PlayerLocal>>
+    lateinit var players: LiveData<List<PlayerLocal>>
 
-
-
-    val players: LiveData<List<PlayerLocal>> = LocalDatabase.getDatabase(application).playerDao().allItems()
     init {
-
-       GlobalScope.launch {
-           playerLocalRepository.addPlayerLocal(3,2,5,2,5,2,5)
-
-       }
+        updateLocalPlayers()
     }
+    fun updateLocalPlayers()
+    {
+        players=playerLocalRepository.allLocalPlayers()
+    }
+
+//    val players: LiveData<List<PlayerLocal>> = LocalDatabase.getDatabase(application).playerDao().allItems()
+//    init {
+//
+//       GlobalScope.launch {
+//           playerLocalRepository.addPlayerLocal(3,2,5,2,5,2,5)
+//
+//       }
+//    }
 }

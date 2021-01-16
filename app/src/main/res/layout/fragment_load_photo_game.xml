@@ -20,36 +20,42 @@
         android:id="@+id/buttonConfirmPhotoGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/button_background_color"
         android:text="Zatwierdź zdjęcie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonBackToEnterDataGame"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonCameraGame"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewGame" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGame"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonBackToEnterDataGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/button_background_color"
         android:text="Powrót"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonConfirmPhotoGame"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewGame" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGame"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonCameraGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/button_background_color"
         android:text="Zrób zdjęcie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonConfirmPhotoGame"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewGame" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGame"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

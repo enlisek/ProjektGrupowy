@@ -20,36 +20,42 @@
         android:id="@+id/buttonConfirmPhotoLocal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/button_background_color"
         android:text="Zatwierdź zdjęcie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonBackToEnterManually"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonCameraLocal"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonBackToEnterManually"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/button_background_color"
         android:text="Powrót"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonConfirmPhotoLocal"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonCameraLocal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/button_background_color"
         android:text="Zrób zdjęcie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonConfirmPhotoLocal"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLocal"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

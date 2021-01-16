@@ -12,6 +12,6 @@ interface PlayerDao {
     @Insert
     suspend fun insert(player: PlayerLocal)
 
-    @Query("select * from player_table")
+    @Query("select * from player_table order by id DESC")
     fun allItems():LiveData<List<PlayerLocal>>
 }
