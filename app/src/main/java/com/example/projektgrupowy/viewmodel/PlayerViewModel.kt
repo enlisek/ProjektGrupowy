@@ -16,11 +16,14 @@ class PlayerViewModel(application: Application): AndroidViewModel(application) {
     init {
         playerRemoteRepository= PlayerRemoteRepository()
     }
-    var players: MutableLiveData<List<Player>> = MutableLiveData()
+    private var _players:MutableLiveData<List<Player>> = MutableLiveData()
+    val players: LiveData<List<Player>>
+    get() = _players
+
     fun updatePlayers()
     {
         viewModelScope.launch {
-            players.value=playerRemoteRepository.getAll()
+            _players.value=playerRemoteRepository.getAll()
         }
 
     }

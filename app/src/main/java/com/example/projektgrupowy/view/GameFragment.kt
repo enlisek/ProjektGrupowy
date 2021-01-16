@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,13 +52,14 @@ class GameFragment : Fragment() {
         viewManager1=LinearLayoutManager(requireContext())
         playerViewModel.updatePlayers()
         adapter1= PlayerAdapter(playerViewModel.players)
+        playerViewModel.players.observe(viewLifecycleOwner,{adapter1.notifyDataSetChanged()})
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_game, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        adapter1.notifyDataSetChanged()
         recyclerView.apply {
             adapter=adapter1
             layoutManager=viewManager1
