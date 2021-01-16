@@ -18,6 +18,9 @@ class PlayerRemoteRepository(val apiRequest: ApiRequest) {
     suspend fun addPlayer(player: PlayerWithoutId): Call<Player> {
         return apiRequest.addPlayer(player)
     }
+    suspend fun updatePlayer(player:Player):Call<Player>{
+        return apiRequest.updatePlayer(player.id,player)
+    }
 
 }
 
