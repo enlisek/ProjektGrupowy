@@ -9,6 +9,7 @@ import com.example.projektgrupowy.model.APIconnection.ApiRequest
 import com.example.projektgrupowy.model.APIconnection.PlayerRemoteRepository
 import com.example.projektgrupowy.model.APIconnection.PlayerRemoteService
 import com.example.projektgrupowy.model.Player
+import com.example.projektgrupowy.model.PlayerWithoutId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -32,22 +33,23 @@ class LoadDataGameViewModel(application: Application): AndroidViewModel(applicat
             for (i in r1){
                 Log.v(":)))",i.toString())
             }
-            var player = Player(
-                id,
-                playerName,
-                numberOfRabbit,
-                numberOfPig,
-                numberOfSheep,
-                numberOfCow,
-                numberOfHorse,
-                numberOfDog,
-                numberOfBigDog)
-           var call =  PlayerRemoteService.api.addPlayer(player)
-            var response = call.execute()
-            Log.v("xD", response.body().toString())
+            var playerHelp= PlayerWithoutId(
+            playerName,
+            numberOfRabbit,
+            numberOfPig,
+            numberOfSheep,
+            numberOfCow,
+            numberOfHorse,
+            numberOfDog,
+            numberOfBigDog
+            )
 
-            player.id = 314;
-            Log.v("xD", player.toString())
+           var call =  PlayerRemoteService.api.addPlayer(playerHelp)
+            var response = call.execute()
+            Log.v("Response", response.body().toString())
+//            player = response.body()
+//            player.id = 314;
+//            Log.d("xD", player.toString())
 
         }
 
