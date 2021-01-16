@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
 import com.example.projektgrupowy.viewmodel.LoadDataGameViewModel
 import com.example.projektgrupowy.viewmodel.LocalPlayerViewModel
+import com.example.projektgrupowy.viewmodel.PlayerViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.fragment_load_data_game.*
 
@@ -28,6 +29,7 @@ class LoadDataGameFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var  loadDataGameViewModel:LoadDataGameViewModel
+    private lateinit var  playerViewModel:PlayerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +43,7 @@ class LoadDataGameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        playerViewModel= ViewModelProvider(requireActivity()).get(PlayerViewModel::class.java)
         loadDataGameViewModel = ViewModelProvider(requireActivity()).get(LoadDataGameViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_load_data_game, container, false)
@@ -52,9 +54,21 @@ class LoadDataGameFragment : Fragment() {
 //
 //        buttonBackFromGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_welcomeFragment) }
 //        buttonLoadDataToGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_loadDataGameFragment) }
-//
+
         buttonConfirmDataGame.setOnClickListener{view -> run{
-            loadDataGameViewModel.addPlayer(6756,"2ja",3,2,5,2,5,2,5)
+            if(editTextCowGame.text.toString()!="" && editTextBigDogGame.text.toString()!="" && editTextDogGame.text.toString()!="" && editTextHorseGame.text.toString()!="" && editTextPigGame.text.toString()!="" && editTextRabbitGame.text.toString()!="" && editTextSheepGame.text.toString()!="")
+            {
+                loadDataGameViewModel.updatePlayerData(playerViewModel.currentPlayer.value!!.id,playerViewModel.currentPlayer.value!!.playerName,editTextRabbitGame.text.toString().toInt(),editTextPigGame.text.toString().toInt(),editTextSheepGame.text.toString().toInt(),editTextCowGame.text.toString().toInt(),editTextHorseGame.text.toString().toInt(),editTextDogGame.text.toString().toInt(),editTextBigDogGame.text.toString().toInt())
+                editTextCowGame.setText("")
+                editTextBigDogGame.setText("")
+                editTextDogGame.setText("")
+                editTextHorseGame.setText("")
+                editTextPigGame.setText("")
+                editTextRabbitGame.setText("")
+                editTextSheepGame.setText("")
+                view.findNavController().navigate(R.id.action_loadDataGameFragment_to_gameFragment)
+            }
+
         }}
         buttonBackToGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadDataGameFragment_to_gameFragment) }
         buttonMakePhotoGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadDataGameFragment_to_loadPhotoGameFragment) }

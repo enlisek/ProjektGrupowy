@@ -19,7 +19,7 @@ import retrofit2.await
 class LoadDataGameViewModel(application: Application): AndroidViewModel(application)  {
     var myResponse:MutableLiveData<Response<Player>> = MutableLiveData()
 
-    fun addPlayer(id: Long,
+    fun updatePlayerData(id: Long,
                   playerName: String,
                   numberOfRabbit: Int,
                   numberOfPig: Int,
@@ -33,30 +33,31 @@ class LoadDataGameViewModel(application: Application): AndroidViewModel(applicat
 //            for (i in r1){
 //                Log.v(":)))",i.toString())
 //            }
-            var playerHelp= PlayerWithoutId(
-            playerName,
-            numberOfRabbit,
-            numberOfPig,
-            numberOfSheep,
-            numberOfCow,
-            numberOfHorse,
-            numberOfDog,
-            numberOfBigDog
+            var playerToUpdate= Player(id,
+                playerName,
+                numberOfRabbit,
+                numberOfPig,
+                numberOfSheep,
+                numberOfCow,
+                numberOfHorse,
+                numberOfDog,
+                numberOfBigDog
             )
 
-           var call =  PlayerRemoteService.api.addPlayer(playerHelp)
-            var response = call.execute()
-            Log.v("Response", response.body().toString())
-            var player = response.body()
-            player!!.numberOfBigDog = 314
-//            Log.d("xD", player.toString())
-            player.numberOfRabbit = 1000
+//           var call =  PlayerRemoteService.api.addPlayer(playerHelp)
+//            var response = call.execute()
+//            Log.v("Response", response.body().toString())
+//            var player = response.body()
+//            player!!.numberOfBigDog = 314
+////            Log.d("xD", player.toString())
+//            player.numberOfRabbit = 1000
 
-            var call1 =  PlayerRemoteService.api.updatePlayer(player.id,player)
+            var call1 =  PlayerRemoteService.api.updatePlayer(playerToUpdate.id,playerToUpdate)
             var response1 = call1.execute()
             Log.v("Response", response1.body().toString())
         }
 
     }
+
 
 }
