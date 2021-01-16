@@ -48,6 +48,7 @@ class GameFragment : Fragment() {
 
         playerViewModel=ViewModelProvider(requireActivity()).get(PlayerViewModel::class.java)
         viewManager1=LinearLayoutManager(requireContext())
+        playerViewModel.updatePlayers()
         adapter1= PlayerAdapter(playerViewModel.players)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_game, container, false)
@@ -59,6 +60,9 @@ class GameFragment : Fragment() {
         recyclerView.apply {
             adapter=adapter1
             layoutManager=viewManager1
+        }
+        buttonRefresh.setOnClickListener {
+            playerViewModel.updatePlayers()
         }
         buttonBackFromGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_welcomeFragment) }
         buttonLoadDataToGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_loadDataGameFragment) }
