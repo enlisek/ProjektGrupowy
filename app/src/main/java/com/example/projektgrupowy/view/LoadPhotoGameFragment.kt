@@ -61,6 +61,11 @@ class LoadPhotoGameFragment : Fragment() {
             Log.d("XX", "otworzylem ")
             if (takePictureIntent.resolveActivity((requireContext().packageManager)) != null) {
                 startActivityForResult(takePictureIntent, REQUEST_CODE)
+
+                //TUTAJ ROZPOZNAWANIE
+
+
+
             } else {
                 Toast.makeText(context, "Nie moge otworzyc kamery", Toast.LENGTH_SHORT).show()
             }
