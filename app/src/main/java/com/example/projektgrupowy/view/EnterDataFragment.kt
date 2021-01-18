@@ -62,6 +62,7 @@ class EnterDataFragment : Fragment() {
 
         }
         buttonBackToEnterManually.setOnClickListener{ view->view.findNavController().navigate(R.id.action_enterDataFragment_to_manuallyEnterLocalDataFragment)}
+        buttonConfirmPhotoLocal.setOnClickListener { view->view.findNavController().navigate(R.id.action_enterDataFragment_to_manuallyEnterLocalDataFragment) }
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)

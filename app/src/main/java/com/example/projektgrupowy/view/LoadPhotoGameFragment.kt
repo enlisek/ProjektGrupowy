@@ -67,6 +67,7 @@ class LoadPhotoGameFragment : Fragment() {
 
         }
         buttonBackToEnterDataGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment) }
+        buttonConfirmPhotoGame.setOnClickListener { view -> run { view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment) }}
 
     }
 
