@@ -5,10 +5,10 @@
 5    android:versionName="3.2.0" >
 6
 7    <uses-sdk
-7-->C:\Users\Asus\AndroidStudioProjects\ProjektGrupowy\openCVLibrary320\src\main\AndroidManifest.xml:7:5-73
+7-->D:\STUDIA\0.INF\I5. IO\Nowy folder\ProjektGrupowy\openCVLibrary320\src\main\AndroidManifest.xml:7:5-73
 8        android:minSdkVersion="23"
-8-->C:\Users\Asus\AndroidStudioProjects\ProjektGrupowy\openCVLibrary320\src\main\AndroidManifest.xml:7:15-40
+8-->D:\STUDIA\0.INF\I5. IO\Nowy folder\ProjektGrupowy\openCVLibrary320\src\main\AndroidManifest.xml:7:15-40
 9        android:targetSdkVersion="30" />
-9-->C:\Users\Asus\AndroidStudioProjects\ProjektGrupowy\openCVLibrary320\src\main\AndroidManifest.xml:7:41-70
+9-->D:\STUDIA\0.INF\I5. IO\Nowy folder\ProjektGrupowy\openCVLibrary320\src\main\AndroidManifest.xml:7:41-70
 10
 11</manifest>

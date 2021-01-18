@@ -72,7 +72,7 @@ class LoadPhotoGameFragment : Fragment() {
         // Inflate the layout for this fragment
         mainViewModel= ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         var view = inflater.inflate(R.layout.fragment_load_photo_game, container, false)
-        imageView  = (view.findViewById(R.id.imageViewGame))
+//        imageView  = (view.findViewById(R.id.imageViewGame))
         return inflater.inflate(R.layout.fragment_load_photo_game, container, false)
     }
 
@@ -108,18 +108,19 @@ class LoadPhotoGameFragment : Fragment() {
         {
             var takenImage = data?.extras?.get("data") as Bitmap
             krolikIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            owcaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            swiniaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            krowaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            konIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            piesekIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            piesIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
+            owcaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.owca).toBitmap()), 35,28)
+            swiniaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.swinia).toBitmap()), 35,28)
+            krowaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krowa).toBitmap()), 35,28)
+            konIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.kon).toBitmap()), 35,28)
+            piesekIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.piesek).toBitmap()), 35,28)
+            piesIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.pies).toBitmap()), 35,28)
 
 
             var edged = Edges(takenImage)
             var ti = OpenCVTry(edged)
-            imageView.setImageBitmap(ti)
-
+//            imageView.setImageResource(R.drawable.krolik)
+//            imageView.setImageBitmap(ti)
+            imageViewGame.setImageBitmap(ti)
 
         }
         else
@@ -134,7 +135,7 @@ class LoadPhotoGameFragment : Fragment() {
     {
 
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME)
-        var itkroliki:Int = FindAnimal(btm, krolikIm, 0.999, Scalar(150.0, 30.0,30.0), 1500000.0)
+        var itkroliki:Int = FindAnimal(btm, krolikIm, 0.999, Scalar(150.0, 30.0,30.0), 1800000.0)
         var itowce:Int = FindAnimal(btm, owcaIm, 0.98, Scalar(0.0, 255.0,0.0), 1800000.0)
         var itswinie:Int = FindAnimal(btm, swiniaIm, 0.95, Scalar(255.0, 0.0,255.0), 1000000.0)
         var itkrowy:Int = FindAnimal(btm, krowaIm, 0.98, Scalar(100.0, 100.0,100.0), 1200000.0)
@@ -183,7 +184,6 @@ class LoadPhotoGameFragment : Fragment() {
             val maxr = Core.minMaxLoc(finalmat)
             val maxp = maxr.maxLoc
             maxval = maxr.maxVal/v
-            //   maxval = Math.tanh(maxval)
             val maxop = Point(maxp.x + mattemplate.width(), maxp.y + mattemplate.height())
             dst = mat.clone()
 
