@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.RulesFragment" >
+
+    <Button
+        android:id="@+id/buttonBackFromRules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="powrót"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        app:layout_constraintVertical_bias="1.0"
+
+        android:backgroundTint="@color/button_background_color"/>
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="408dp"
+        android:layout_height="304dp"
+        android:layout_marginTop="8dp"
+        android:text="Na początku gry farma (plansza) każdego z graczy jest pusta. Gracze rzucają (w turach) dwiema kostkami. Kiedy na obu kostkach wypadnie to samo zwierzę, gracz otrzymuje jedno zwierzę tego gatunku do swojej farmy. Od tego momentu liczba zwierząt posiadanych przez gracza na farmie oraz wyrzuconych przez niego na kostkach w danej kolejce sumuje się. Gracz otrzymuje jedno nowe zwierzę za każdą pełną parę tego samego gatunku, jaka będzie widniała na kostkach i jego planszy. Jeśli na jednej z kostek wypadnie lis, gracz traci wszystkie swoje króliki, chyba że posiada małego psa – wtedy traci tylko psa, a króliki pozostają nietknięte. Jeśli na kostce wypadnie wilk, gracz traci wszystkie zwierzęta oprócz konia i małego psa, chyba że posiada dużego psa – wówczas traci tylko tego psa.  Gracze mogą wymieniać posiadane zwierzęta ze stadem głównym (bankiem) lub między sobą. Wygrywa ten gracz, który jako pierwszy będzie miał na swojej farmie co najmniej jedno zwierzę z każdego z pięciu gatunków hodowlanych."
+        android:textColor="#E91E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Rozgrywka"
+        android:textAlignment="viewStart"
+        android:textColor="#4CAF50"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tabela wymiany"
+        android:textColor="#4CAF50"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="1 owca = 6 królików \n1 świnia = 2 owce = 12 królików = 1 owca + 6 królików \n1 krowa = 3 świnie = 6 owiec = 36 królików \n1 koń = 2 krowy = 6 świń = 12 owiec = 1 krowa + 1 świnia + 1 owca + 18 królików \n1 mały pies = 1 owca = 6 królików \n1 duży pies = 1 krowa = 3 świnie = 6 owiec = 36 królików"
+        android:textColor="#E91E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+</androidx.constraintlayout.widget.ConstraintLayout>

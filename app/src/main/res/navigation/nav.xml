@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_welcomeFragment_to_localPlayerFragment"
             app:destination="@id/localPlayerFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_rulesFragment"
+            app:destination="@id/rulesFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -82,5 +85,14 @@
         <action
             android:id="@+id/action_loadPhotoGameFragment_to_loadDataGameFragment"
             app:destination="@id/loadDataGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.example.projektgrupowy.view.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" >
+        <action
+            android:id="@+id/action_rulesFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
 </navigation>
