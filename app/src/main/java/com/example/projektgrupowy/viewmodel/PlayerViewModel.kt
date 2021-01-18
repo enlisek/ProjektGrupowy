@@ -17,34 +17,34 @@ import kotlinx.coroutines.launch
 
 class PlayerViewModel(application: Application): AndroidViewModel(application) {
 
-//    private val playerRemoteRepository: PlayerRemoteRepository
-//    init {
-//        playerRemoteRepository= PlayerRemoteRepository()
-//    }
+    private val playerRemoteRepository: PlayerRemoteRepository
+    init {
+        playerRemoteRepository= PlayerRemoteRepository()
+    }
     private var _players:MutableLiveData<List<Player>> = MutableLiveData()
     val players: LiveData<List<Player>>
     get() = _players
 
     fun updatePlayers()
     {
-//        viewModelScope.launch {
-//            _players.value=playerRemoteRepository.getAll()
-//        }
+        viewModelScope.launch {
+            _players.value=playerRemoteRepository.getAll()
+        }
 
     }
 
     fun addPlayer(playerName: String) {
-//        GlobalScope.launch(Dispatchers.IO) {
-//
-//            var playerToAdd = PlayerWithoutId(
-//                    playerName, 0, 0, 0, 0, 0, 0, 0)
-//
-//            var call1 = playerRemoteRepository.addPlayer(playerToAdd)
-//            var response1 = call1.execute()
-//            Log.v("Response", response1.body().toString())
-//
-//            setCurrentPlayer(response1.body()!!)
-//        }
+        GlobalScope.launch(Dispatchers.IO) {
+
+            var playerToAdd = PlayerWithoutId(
+                    playerName, 0, 0, 0, 0, 0, 0, 0)
+
+            var call1 = playerRemoteRepository.addPlayer(playerToAdd)
+            var response1 = call1.execute()
+            Log.v("Response", response1.body().toString())
+
+            setCurrentPlayer(response1.body()!!)
+        }
     }
 
     private var _currentPlayer:MutableLiveData<Player> = MutableLiveData()

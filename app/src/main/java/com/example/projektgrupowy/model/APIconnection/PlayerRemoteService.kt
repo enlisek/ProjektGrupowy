@@ -16,7 +16,7 @@ import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 import kotlin.jvm.Throws
 
-const val BASE_URL="https://192.168.0.117:5001/api/"
+const val BASE_URL="https://192.168.0.74:5001/api/"
 object PlayerRemoteService
 {
     private val retrofit by lazy{
