@@ -18,12 +18,18 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
+import com.example.projektgrupowy.viewmodel.LocalPlayerViewModel
+import com.example.projektgrupowy.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.fragment_enter_data.view.*
+import kotlinx.android.synthetic.main.fragment_load_data_game.*
 import kotlinx.android.synthetic.main.fragment_load_photo_game.*
 import org.opencv.android.Utils
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
+import kotlin.math.abs
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,6 +57,7 @@ class LoadPhotoGameFragment : Fragment() {
     lateinit var piesIm: Bitmap
     lateinit var imageView: ImageView
     lateinit var lista : List<Int>
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +72,9 @@ class LoadPhotoGameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        mainViewModel= ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         var view = inflater.inflate(R.layout.fragment_load_photo_game, container, false)
-        imageView  = (view.findViewById(R.id.imageViewGame))
+//        imageView  = (view.findViewById(R.id.imageViewGame))
         return inflater.inflate(R.layout.fragment_load_photo_game, container, false)
     }
 
@@ -85,7 +93,13 @@ class LoadPhotoGameFragment : Fragment() {
             }
 
         }
-        buttonBackToEnterDataGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment) }
+        buttonBackToEnterDataGame.setOnClickListener { view ->
+            run {
+                mainViewModel.list = listOf(0, 0, 0, 0, 0, 0, 0)
+                view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment)
+            }
+        }
+        buttonConfirmPhotoGame.setOnClickListener { view -> run { view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment) }}
 
     }
 
@@ -96,18 +110,19 @@ class LoadPhotoGameFragment : Fragment() {
         {
             var takenImage = data?.extras?.get("data") as Bitmap
             krolikIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            owcaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            swiniaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            krowaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            konIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            piesekIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
-            piesIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krolik).toBitmap()), 35,28)
+            owcaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.owca).toBitmap()), 35,28)
+            swiniaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.swinia).toBitmap()), 35,28)
+            krowaIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.krowa).toBitmap()), 35,28)
+            konIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.kon).toBitmap()), 35,28)
+            piesekIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.piesek).toBitmap()), 35,28)
+            piesIm =ScaleBitmap(Edges(getResources().getDrawable(R.drawable.pies).toBitmap()), 35,28)
 
 
             var edged = Edges(takenImage)
             var ti = OpenCVTry(edged)
-            imageView.setImageBitmap(ti)
-
+//            imageView.setImageResource(R.drawable.krolik)
+//            imageView.setImageBitmap(ti)
+            imageViewGame.setImageBitmap(ti)
 
         }
         else
@@ -122,23 +137,29 @@ class LoadPhotoGameFragment : Fragment() {
     {
 
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME)
-        var itkroliki:Int = FindAnimal(btm, krolikIm, 0.999, Scalar(150.0, 30.0,30.0), 1500000.0)
-        var itowce:Int = FindAnimal(btm, owcaIm, 0.98, Scalar(0.0, 255.0,0.0), 1800000.0)
-        var itswinie:Int = FindAnimal(btm, swiniaIm, 0.95, Scalar(255.0, 0.0,255.0), 1000000.0)
-        var itkrowy:Int = FindAnimal(btm, krowaIm, 0.98, Scalar(100.0, 100.0,100.0), 1200000.0)
-        var itkonie:Int = FindAnimal(btm, konIm, 0.99, Scalar(255.0, 100.0,100.0), 1700000.0)
-        var itpieski:Int = FindAnimal(btm, piesekIm, 0.99, Scalar(100.0, 100.0,255.0), 2000000.0)
-        var itpsy:Int = FindAnimal(btm, piesIm, 0.99, Scalar(100.0, 255.0,100.0), 2000000.0)
+//        var itkroliki:Int = FindAnimal(btm, krolikIm, 0.001, Scalar(150.0, 30.0,30.0), 100000.0)
+//        var itowce:Int = FindAnimal(btm, owcaIm, 0.001, Scalar(0.0, 255.0,0.0), 1500000.0)
+//        var itswinie:Int = FindAnimal(btm, swiniaIm, 0.97, Scalar(255.0, 0.0,255.0), 900000.0)
+//        var itkrowy:Int = FindAnimal(btm, krowaIm, 0.99, Scalar(100.0, 100.0,100.0), 1000000.0)
+//        var itkonie:Int = FindAnimal(btm, konIm, 0.97, Scalar(255.0, 100.0,100.0), 1300000.0)
+//        var itpieski:Int = FindAnimal(btm, piesekIm, 0.97, Scalar(100.0, 100.0,255.0), 1500000.0)
+//        var itpsy:Int = FindAnimal(btm, piesIm, 0.97, Scalar(255.0, 255.0,255.0), 1500000.0)
+//
+//
+//        lista = listOf(itkroliki,itowce, itswinie,itkrowy,itkonie,itpieski,itpsy)
+//        mainViewModel.list = lista
 
+        var btm2:Bitmap = btm
+        btm2 = FindAnimal(btm,krolikIm,0.99,Scalar(150.0,30.0,30.0), 25000000.0)
 
-        lista = listOf(itkroliki,itowce, itswinie,itkrowy,itkonie,itpieski,itpsy)
-        println(" ZWIERZATKA: ${lista[0]},${lista[1]},${lista[2]},${lista[3]},${lista[4]},${lista[5]},${lista[6]} ")
-        return btm
+//        println(" ZWIERZATKA: ${lista[0]},${lista[1]},${lista[2]},${lista[3]},${lista[4]},${lista[5]},${lista[6]} ")
+        return btm2
     }
 
 
-    fun FindAnimal(btm:Bitmap, template:Bitmap, threshold:Double, kolor: Scalar, v:Double) : Int
-    {        val machMethod = Imgproc.TM_CCOEFF
+    fun FindAnimal(btm:Bitmap, template:Bitmap, threshold:Double, kolor: Scalar, v:Double) : Bitmap
+    {
+        val machMethod = Imgproc.TM_CCOEFF_NORMED
 
 
         var finalbtm : Bitmap = Bitmap.createBitmap(btm,0,0,btm.width,btm.height)
@@ -157,41 +178,54 @@ class LoadPhotoGameFragment : Fragment() {
         //zrodlo,templatka,wynik,metoda
         Imgproc.matchTemplate(mat, mattemplate, finalmat, machMethod)
 
-        val threshold = 0.99
-        var maxval: Double = 10000000000.0
+        var maxval: Double = 1.0
         var dst: Mat
         var it =0
 
         val data: ArrayList<Array<Double>> = ArrayList()
 
-        while (maxval>=threshold) {
-            val maxr = Core.minMaxLoc(finalmat)
-            val maxp = maxr.maxLoc
-            maxval = maxr.maxVal/v
-            //   maxval = Math.tanh(maxval)
-            val maxop = Point(maxp.x + mattemplate.width(), maxp.y + mattemplate.height())
-            dst = mat.clone()
+//        while (maxval<=threshold) {
+//            val maxr = Core.minMaxLoc(finalmat)
+//            val maxp = maxr.maxLoc
+//            maxval = maxr.maxVal /v
+//           // val maxop = Point(maxp.x + mattemplate.width(), maxp.y + mattemplate.height())
+//        //    dst = mat.clone()
+//
+//            var ar :Array<Double> = arrayOf(maxp.x, maxp.y)
+//            data.add(ar)
+//
+//            println("maxval: $maxval")
 
-            var ar :Array<Double> = arrayOf(maxp.x, maxp.y)
-            data.add(ar)
-
-            println("maxval: $maxval")
-            Imgproc.rectangle(
-                    mat, maxp, Point(
-                    maxp.x + mattemplate.cols(),
-                    maxp.y + mattemplate.rows()
-            ), kolor, 1
-            )
-            Imgproc.rectangle(
-                    finalmat, maxp, Point(
-                    maxp.x + mattemplate.cols(),
-                    maxp.y + mattemplate.rows()
-            ), kolor, -1
-            )
-
-
-            if(maxp.x>4 && maxp.y>4.0 && maxp.x<(mat.width()-mattemplate.width()-2) && maxp.y<(mat.height()-mattemplate.height() - 2))
+        var found = false
+            if(maxp.x>4 && maxp.y>4.0 && maxp.x<(mat.width()-mattemplate.width()-4) && maxp.y<(mat.height()-mattemplate.height() - 4)) {
+//                found = false
+//             for(d in data)
+//             {
+//                if(!(abs(d[0]- maxp.x) <= mattemplate.width() && abs(d[1] - maxp.y)<= mattemplate.height()) && !found)
+//                {
                 it++
+//                    found=true
+//                }
+//             }
+//
+
+
+                Imgproc.rectangle(
+                        mat, maxp, Point(
+                        maxp.x + mattemplate.cols(),
+                        maxp.y + mattemplate.rows()
+                ), kolor, 1
+                )
+                Imgproc.rectangle(
+                        finalmat, maxp, Point(
+                        maxp.x + mattemplate.cols(),
+                        maxp.y + mattemplate.rows()
+                ), kolor, -1
+                )
+
+            }
+  //          if(maxp.x>4 && maxp.y>4.0 && maxp.x<(mat.width()-mattemplate.width()-2) && maxp.y<(mat.height()-mattemplate.height() - 2))
+   //             it++
 
         }
         finalmat.convertTo(finalmat, CvType.CV_8UC4)
@@ -199,7 +233,7 @@ class LoadPhotoGameFragment : Fragment() {
         Utils.matToBitmap(finalmat, finalbtm)
         Utils.matToBitmap(mat, btm)
 
-        return it
+        return finalbtm
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
