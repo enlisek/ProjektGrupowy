@@ -18,8 +18,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
+import com.example.projektgrupowy.viewmodel.LocalPlayerViewModel
+import com.example.projektgrupowy.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.fragment_load_data_game.*
 import kotlinx.android.synthetic.main.fragment_load_photo_game.*
 import org.opencv.android.Utils
 import org.opencv.core.*
@@ -51,6 +55,7 @@ class LoadPhotoGameFragment : Fragment() {
     lateinit var piesIm: Bitmap
     lateinit var imageView: ImageView
     lateinit var lista : List<Int>
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +70,7 @@ class LoadPhotoGameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        mainViewModel= ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         var view = inflater.inflate(R.layout.fragment_load_photo_game, container, false)
         imageView  = (view.findViewById(R.id.imageViewGame))
         return inflater.inflate(R.layout.fragment_load_photo_game, container, false)
@@ -85,7 +91,12 @@ class LoadPhotoGameFragment : Fragment() {
             }
 
         }
-        buttonBackToEnterDataGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment) }
+        buttonBackToEnterDataGame.setOnClickListener { view ->
+            run {
+                mainViewModel.list = listOf(0, 0, 0, 0, 0, 0, 0)
+                view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment)
+            }
+        }
         buttonConfirmPhotoGame.setOnClickListener { view -> run { view.findNavController().navigate(R.id.action_loadPhotoGameFragment_to_loadDataGameFragment) }}
 
     }
@@ -133,6 +144,9 @@ class LoadPhotoGameFragment : Fragment() {
 
 
         lista = listOf(itkroliki,itowce, itswinie,itkrowy,itkonie,itpieski,itpsy)
+        mainViewModel.list = lista
+
+
         println(" ZWIERZATKA: ${lista[0]},${lista[1]},${lista[2]},${lista[3]},${lista[4]},${lista[5]},${lista[6]} ")
         return btm
     }

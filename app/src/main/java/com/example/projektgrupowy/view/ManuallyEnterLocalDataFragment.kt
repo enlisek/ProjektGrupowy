@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
+import com.example.projektgrupowy.viewmodel.MainViewModel
 import com.example.projektgrupowy.viewmodel.ManuallyEnterLocalDataViewModel
 import kotlinx.android.synthetic.main.fragment_load_data_game.*
 import kotlinx.android.synthetic.main.fragment_manually_enter_local_data.*
@@ -28,6 +29,8 @@ class ManuallyEnterLocalDataFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var viewModel: ManuallyEnterLocalDataViewModel
+    private lateinit var mainViewModel: MainViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,8 @@ class ManuallyEnterLocalDataFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         viewModel= ViewModelProvider(requireActivity()).get(ManuallyEnterLocalDataViewModel::class.java)
+        mainViewModel= ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+
 
         return inflater.inflate(R.layout.fragment_manually_enter_local_data, container, false)
     }
@@ -48,23 +53,25 @@ class ManuallyEnterLocalDataFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        buttonConfirmData.setOnClickListener{view -> run{
-            if(editTextCow.text.toString()!="" && editTextBigDog.text.toString()!="" && editTextDog.text.toString()!="" && editTextHorse.text.toString()!="" && editTextPig.text.toString()!="" && editTextRabbit.text.toString()!="" && editTextSheep.text.toString()!="")
-            {
-                viewModel.saveLocalPlayer(editTextRabbit.text.toString().toInt(),editTextPig.text.toString().toInt(),editTextSheep.text.toString().toInt(),editTextCow.text.toString().toInt(),editTextHorse.text.toString().toInt(),editTextDog.text.toString().toInt(),editTextBigDog.text.toString().toInt())
-                editTextCow.setText("")
-                editTextBigDog.setText("")
-                editTextDog.setText("")
-                editTextHorse.setText("")
-                editTextPig.setText("")
-                editTextRabbit.setText("")
-                editTextSheep.setText("")
-                view.findNavController().navigate(R.id.action_manuallyEnterLocalDataFragment_to_localPlayerFragment)
-            }
 
+        editTextRabbit.setText(mainViewModel.list[0].toString())
+        editTextSheep.setText(mainViewModel.list[1].toString())
+        editTextPig.setText(mainViewModel.list[2].toString())
+        editTextCow.setText(mainViewModel.list[3].toString())
+        editTextHorse.setText(mainViewModel.list[4].toString())
+        editTextDog.setText(mainViewModel.list[5].toString())
+        editTextBigDog.setText(mainViewModel.list[6].toString())
+
+
+        buttonConfirmData.setOnClickListener{view -> run{
+            viewModel.saveLocalPlayer(editTextRabbit.text.toString().toInt(),editTextPig.text.toString().toInt(),editTextSheep.text.toString().toInt(),editTextCow.text.toString().toInt(),editTextHorse.text.toString().toInt(),editTextDog.text.toString().toInt(),editTextBigDog.text.toString().toInt())
+            mainViewModel.list= listOf(0,0,0,0,0,0,0)
+            view.findNavController().navigate(R.id.action_manuallyEnterLocalDataFragment_to_localPlayerFragment)
         }}
         buttonMakePhoto.setOnClickListener { view->view.findNavController().navigate(R.id.action_manuallyEnterLocalDataFragment_to_enterDataFragment) }
-        buttonBackToLocal.setOnClickListener { view->view.findNavController().navigate(R.id.action_manuallyEnterLocalDataFragment_to_localPlayerFragment) }
+        buttonBackToLocal.setOnClickListener { view-> run {
+            mainViewModel.list= listOf(0,0,0,0,0,0,0)
+            view.findNavController().navigate(R.id.action_manuallyEnterLocalDataFragment_to_localPlayerFragment) }  }
 
     }
     companion object {

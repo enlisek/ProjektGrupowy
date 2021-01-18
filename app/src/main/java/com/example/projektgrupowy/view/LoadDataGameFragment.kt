@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
 import com.example.projektgrupowy.viewmodel.LoadDataGameViewModel
 import com.example.projektgrupowy.viewmodel.LocalPlayerViewModel
+import com.example.projektgrupowy.viewmodel.MainViewModel
 import com.example.projektgrupowy.viewmodel.PlayerViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.fragment_load_data_game.*
@@ -30,6 +31,8 @@ class LoadDataGameFragment : Fragment() {
     private var param2: String? = null
     private lateinit var  loadDataGameViewModel:LoadDataGameViewModel
     private lateinit var  playerViewModel:PlayerViewModel
+    private lateinit var mainViewModel: MainViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,8 @@ class LoadDataGameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mainViewModel= ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+
         playerViewModel= ViewModelProvider(requireActivity()).get(PlayerViewModel::class.java)
         loadDataGameViewModel = ViewModelProvider(requireActivity()).get(LoadDataGameViewModel::class.java)
         // Inflate the layout for this fragment
@@ -51,26 +56,25 @@ class LoadDataGameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//
-//        buttonBackFromGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_welcomeFragment) }
-//        buttonLoadDataToGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_gameFragment_to_loadDataGameFragment) }
+
+        editTextRabbitGame.setText(mainViewModel.list[0].toString())
+        editTextSheepGame.setText(mainViewModel.list[1].toString())
+        editTextPigGame.setText(mainViewModel.list[2].toString())
+        editTextCowGame.setText(mainViewModel.list[3].toString())
+        editTextHorseGame.setText(mainViewModel.list[4].toString())
+        editTextDogGame.setText(mainViewModel.list[5].toString())
+        editTextBigDogGame.setText(mainViewModel.list[6].toString())
+
 
         buttonConfirmDataGame.setOnClickListener{view -> run{
-            if(editTextCowGame.text.toString()!="" && editTextBigDogGame.text.toString()!="" && editTextDogGame.text.toString()!="" && editTextHorseGame.text.toString()!="" && editTextPigGame.text.toString()!="" && editTextRabbitGame.text.toString()!="" && editTextSheepGame.text.toString()!="")
-            {
-                loadDataGameViewModel.updatePlayerData(playerViewModel.currentPlayer.value!!.id,playerViewModel.currentPlayer.value!!.playerName,editTextRabbitGame.text.toString().toInt(),editTextPigGame.text.toString().toInt(),editTextSheepGame.text.toString().toInt(),editTextCowGame.text.toString().toInt(),editTextHorseGame.text.toString().toInt(),editTextDogGame.text.toString().toInt(),editTextBigDogGame.text.toString().toInt())
-                editTextCowGame.setText("")
-                editTextBigDogGame.setText("")
-                editTextDogGame.setText("")
-                editTextHorseGame.setText("")
-                editTextPigGame.setText("")
-                editTextRabbitGame.setText("")
-                editTextSheepGame.setText("")
-                view.findNavController().navigate(R.id.action_loadDataGameFragment_to_gameFragment)
+            loadDataGameViewModel.updatePlayerData(playerViewModel.currentPlayer.value!!.id,playerViewModel.currentPlayer.value!!.playerName,editTextRabbitGame.text.toString().toInt(),editTextPigGame.text.toString().toInt(),editTextSheepGame.text.toString().toInt(),editTextCowGame.text.toString().toInt(),editTextHorseGame.text.toString().toInt(),editTextDogGame.text.toString().toInt(),editTextBigDogGame.text.toString().toInt())
+            mainViewModel.list= listOf(0,0,0,0,0,0,0)
+            view.findNavController().navigate(R.id.action_loadDataGameFragment_to_gameFragment)
             }
-
-        }}
-        buttonBackToGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadDataGameFragment_to_gameFragment) }
+        }
+        buttonBackToGame.setOnClickListener { view->run {
+            mainViewModel.list= listOf(0,0,0,0,0,0,0)
+            view.findNavController().navigate(R.id.action_loadDataGameFragment_to_gameFragment) }}
         buttonMakePhotoGame.setOnClickListener { view->view.findNavController().navigate(R.id.action_loadDataGameFragment_to_loadPhotoGameFragment) }
     }
 
