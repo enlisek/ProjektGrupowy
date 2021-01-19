@@ -37,11 +37,6 @@ private const val ARG_PARAM2 = "param2"
 private const val REQUEST_CODE = 42
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LoadPhotoGameFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LoadPhotoGameFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -56,6 +51,7 @@ class LoadPhotoGameFragment : Fragment() {
     lateinit var imageView: ImageView
     lateinit var lista : List<Int>
     private lateinit var mainViewModel: MainViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,7 +116,7 @@ class LoadPhotoGameFragment : Fragment() {
             var ti = OpenCVTry(edged)
 //            imageView.setImageResource(R.drawable.krolik)
 //            imageView.setImageBitmap(ti)
-            imageViewGame.setImageBitmap(ti)
+            imageViewGame.setImageBitmap(edged)
 
         }
         else
@@ -159,9 +155,10 @@ class LoadPhotoGameFragment : Fragment() {
 
         var finalbtm : Bitmap = Bitmap.createBitmap(btm,0,0,btm.width,btm.height)
         var mat : Mat = Mat() //mat dla zrodlowego
-        var mattemplate: Mat = Mat(template.width, template.height, CvType.CV_8UC3, Scalar(0.0, 0.0, 255.0)) //mat dla templatki krolika
-        var finalmat = Mat(btm.height, btm.width, CvType.CV_8UC1, Scalar(0.0, 0.0, 255.0))
-
+        var mattemplate: Mat = Mat(template.width, template.height, CvType.CV_8UC3,
+                Scalar(0.0, 0.0, 255.0)) //mat dla templatki krolika
+        var finalmat = Mat(btm.height, btm.width, CvType.CV_8UC1,
+                Scalar(0.0, 0.0, 255.0))
 
         Utils.bitmapToMat(btm,mat) //zrodlo do mat
         Utils.bitmapToMat(template,mattemplate) //krolik do mat

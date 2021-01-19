@@ -22,6 +22,7 @@ import androidx.navigation.findNavController
 import com.example.projektgrupowy.R
 import com.example.projektgrupowy.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_enter_data.*
+import kotlinx.android.synthetic.main.fragment_load_photo_game.*
 import org.opencv.android.Utils
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
@@ -109,7 +110,10 @@ class EnterDataFragment : Fragment() {
 
             var edged = Edges(takenImage)
             var ti = OpenCVTry(edged)
-            imageView.setImageBitmap(ti)
+//            imageView.setImageResource(R.drawable.krolik)
+//            imageView.setImageBitmap(ti)
+            imageViewLocal.setImageBitmap(edged)
+
 
 
         }
@@ -147,9 +151,10 @@ class EnterDataFragment : Fragment() {
 
         var finalbtm : Bitmap = Bitmap.createBitmap(btm,0,0,btm.width,btm.height)
         var mat : Mat = Mat() //mat dla zrodlowego
-        var mattemplate: Mat = Mat(template.width, template.height, CvType.CV_8UC3, Scalar(0.0, 0.0, 255.0)) //mat dla templatki krolika
-        var finalmat = Mat(btm.height, btm.width, CvType.CV_8UC1, Scalar(0.0, 0.0, 255.0))
-
+        var mattemplate: Mat = Mat(template.width, template.height, CvType.CV_8UC3,
+            Scalar(0.0, 0.0, 255.0)) //mat dla templatki krolika
+        var finalmat = Mat(btm.height, btm.width, CvType.CV_8UC1,
+            Scalar(0.0, 0.0, 255.0))
 
         Utils.bitmapToMat(btm,mat) //zrodlo do mat
         Utils.bitmapToMat(template,mattemplate) //krolik do mat
@@ -172,7 +177,6 @@ class EnterDataFragment : Fragment() {
             val maxr = Core.minMaxLoc(finalmat)
             val maxp = maxr.maxLoc
             maxval = maxr.maxVal/v
-            //   maxval = Math.tanh(maxval)
             val maxop = Point(maxp.x + mattemplate.width(), maxp.y + mattemplate.height())
             dst = mat.clone()
 
@@ -181,16 +185,16 @@ class EnterDataFragment : Fragment() {
 
             println("maxval: $maxval")
             Imgproc.rectangle(
-                    mat, maxp, Point(
+                mat, maxp, Point(
                     maxp.x + mattemplate.cols(),
                     maxp.y + mattemplate.rows()
-            ), kolor, 1
+                ), kolor, 1
             )
             Imgproc.rectangle(
-                    finalmat, maxp, Point(
+                finalmat, maxp, Point(
                     maxp.x + mattemplate.cols(),
                     maxp.y + mattemplate.rows()
-            ), kolor, -1
+                ), kolor, -1
             )
 
 
@@ -268,13 +272,12 @@ class EnterDataFragment : Fragment() {
     fun ScaleBitmap(btm:Bitmap, w:Int,h:Int):Bitmap
     {
         return Bitmap.createScaledBitmap(
-                btm,
-                w,
-                h,
-                false
+            btm,
+            w,
+            h,
+            false
         )
     }
-
 
 
     companion object {
